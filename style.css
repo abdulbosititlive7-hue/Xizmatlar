@@ -1,0 +1,52 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+body { background-color: #0f172a; color: #f8fafc; min-height: 100vh; display: flex; }
+
+#login-screen { position: fixed; inset: 0; background: #0f172a; display: flex; justify-content: center; align-items: center; z-index: 999; }
+.login-box { background: #1e293b; padding: 30px; border-radius: 12px; width: 320px; border: 1px solid #334155; }
+.login-box h2 { text-align: center; margin-bottom: 20px; color: #38bdf8; }
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; font-size: 12px; margin-bottom: 5px; color: #94a3b8; }
+.input-group input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #334155; background: #0f172a; color: #fff; outline: none; }
+
+.pass-wrapper { position: relative; display: flex; align-items: center; }
+.pass-wrapper input { padding-right: 35px; }
+.eye-icon { position: absolute; right: 10px; cursor: pointer; user-select: none; font-size: 16px; }
+
+.btn { width: 100%; padding: 10px; background: #2563eb; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+.btn:hover { background: #1d4ed8; }
+.btn-dark { background: #334155; margin-top: 5px; }
+
+#dashboard { display: none; width: 100%; min-height: 100vh; }
+.sidebar { width: 260px; background: #1e293b; border-right: 1px solid #334155; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.menu-title { background: #2563eb; color: #fff; padding: 12px; border-radius: 10px; font-weight: bold; font-size: 16px; text-align: center; }
+.menu-item { padding: 12px; border-radius: 8px; color: #94a3b8; cursor: pointer; transition: 0.2s; }
+.menu-item:hover, .menu-item.active { background: #334155; color: #fff; }
+
+.main-content { flex: 1; padding: 30px; overflow-y: auto; }
+.card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.hidden { display: none !important; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; }
+.stat-card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 15px; text-align: center; }
+.stat-num { font-size: 28px; font-weight: bold; margin-bottom: 5px; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th, td { border: 1px solid #334155; padding: 10px; text-align: center; font-size: 14px; }
+th { background: #0f172a; color: #38bdf8; }
+
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background: #1e293b; padding: 25px; border-radius: 12px; width: 400px; border: 1px solid #334155; }
+.modal-content h3 { margin-bottom: 15px; color: #38bdf8; }
+
+.action-btn-sm { padding: 6px 10px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; font-size: 12px; }
+.btn-green { background: #10b981; color: white; }
+.btn-blue { background: #2563eb; color: white; }
+.btn-red { background: #ef4444; color: white; }
+.btn-retry { background: #f59e0b; color: white; }
+
+/* BALL NISHONLARI */
+.badge { padding: 5px 10px; border-radius: 6px; font-weight: bold; font-size: 12px; display: inline-block; }
+.badge-green { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; }
+.badge-blue { background: rgba(37, 99, 235, 0.2); color: #38bdf8; border: 1px solid #38bdf8; }
+.badge-red { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; }
+.badge-orange { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; }

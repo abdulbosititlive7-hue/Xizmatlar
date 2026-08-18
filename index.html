@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FC PRO UZ — Platforma</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- LOGIN EKRANI -->
+  <div id="login-screen">
+    <div class="login-box">
+      <h2>FC PRO UZ</h2>
+      <div class="input-group">
+        <label>Login:</label>
+        <input type="text" id="login-input" placeholder="masalan: odam1234">
+      </div>
+      <div class="input-group">
+        <label>Parol:</label>
+        <div class="pass-wrapper">
+          <input type="password" id="pass-input" placeholder="masalan: parol1234">
+          <span class="eye-icon" onclick="togglePassword('pass-input')">👁</span>
+        </div>
+      </div>
+      <button class="btn" onclick="login()">Kirish</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard">
+    <div class="sidebar">
+      <div class="menu-title">⚽️ FC PRO UZ</div>
+      <div class="menu-item active" id="menu-tasks" onclick="switchTab('tasks')">📋 Topshiriqlar</div>
+      <div class="menu-item" id="menu-groups" onclick="switchTab('groups')">👥 Guruhlar</div>
+      <div class="menu-item hidden" id="menu-check" onclick="switchTab('check')">🔍 Tekshirish (Ega)</div>
+      <a href="https://t.me/FC_PROUZ" target="_blank" class="menu-item" style="text-decoration: none;">📢 @FC_PROUZ</a>
+      <div class="menu-item" onclick="logout()" style="margin-top: auto; color: #ef4444;">🚪 Chiqish</div>
+    </div>
+
+    <div class="main-content">
+      <div class="card">
+        <h2 id="welcome-user">Salom!</h2>
+        <p id="user-role" style="color: #94a3b8; font-size: 13px;"></p>
+      </div>
+
+      <!-- TOPSHIRIQLAR -->
+      <div id="section-tasks">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num" id="st-total">0</div><div style="color:#94a3b8;">Jami</div></div>
+          <div class="stat-card"><div class="stat-num" style="color:#22c55e;" id="st-done">0</div><div style="color:#94a3b8;">Bajarilgan</div></div>
+          <div class="stat-card"><div class="stat-num" style="color:#eab308;" id="st-pending">0</div><div style="color:#94a3b8;">Kutilmoqda</div></div>
+          <div class="stat-card"><div class="stat-num" style="color:#ef4444;" id="st-left">0</div><div style="color:#94a3b8;">Topshirilmagan</div></div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3>Topshiriqlar ro'yxati</h3>
+            <button class="action-btn-sm btn-blue hidden" id="btn-add-task-owner" onclick="openModal('modal-add-task')">+ Topshiriq qo'shish</button>
+          </div>
+          <table>
+            <thead>
+              <tr><th>#</th><th>Nomi</th><th>Holat</th><th>Amal</th></tr>
+            </thead>
+            <tbody id="task-list-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- GURUHLAR -->
+      <div id="section-groups" class="hidden">
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h3>Guruhlar va Davomat</h3>
+            <button class="action-btn-sm btn-blue hidden" id="btn-add-group-owner" onclick="openModal('modal-add-group')">+ Guruh qo'shish</button>
+          </div>
+          <div id="groups-container"></div>
+        </div>
+      </div>
+
+      <!-- TEKSHIRISH (EGA) -->
+      <div id="section-check" class="hidden">
+        <div class="card">
+          <h3>Yuborilgan normativlarni tekshirish</h3>
+          <table>
+            <thead>
+              <tr><th>Odam</th><th>Topshiriq</th><th>Video</th><th>Baholash / Amal</th></tr>
+            </thead>
+            <tbody id="check-list-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- MODALLAR -->
+  <div id="modal-add-group" class="modal hidden">
+    <div class="modal-content">
+      <h3>Yangi guruh qo'shish</h3>
+      <div class="input-group"><label>Guruh nomi:</label><input type="text" id="group-name-inp"></div>
+      <button class="btn" onclick="createGroup()">Yaratish</button>
+      <button class="btn btn-dark" onclick="closeModals()">Yopish</button>
+    </div>
+  </div>
+
+  <div id="modal-add-user" class="modal hidden">
+    <div class="modal-content">
+      <h3>Guruhga odam qo'shish</h3>
+      <div class="input-group"><label>Ism:</label><input type="text" id="u-fname"></div>
+      <div class="input-group"><label>Familiya:</label><input type="text" id="u-lname"></div>
+      <div class="input-group"><label>4 ta son (masalan: 1234):</label><input type="text" id="u-code"></div>
+      <button class="btn" onclick="addUserToGroup()">Saqlash</button>
+      <button class="btn btn-dark" onclick="closeModals()">Yopish</button>
+    </div>
+  </div>
+
+  <div id="modal-add-task" class="modal hidden">
+    <div class="modal-content">
+      <h3>Yangi topshiriq qo'shish</h3>
+      <div class="input-group"><label>Topshiriq nomi:</label><input type="text" id="t-title"></div>
+      <button class="btn" onclick="createTask()">Qo'shish</button>
+      <button class="btn btn-dark" onclick="closeModals()">Yopish</button>
+    </div>
+  </div>
+
+  <div id="modal-submit-task" class="modal hidden">
+    <div class="modal-content">
+      <h3>Topshiriqni topshirish</h3>
+      <p style="font-size:12px; color:#94a3b8; margin-bottom:10px;">Yechim videosini YouTubega joylab, linkini kiriting:</p>
+      <div class="input-group"><label>YouTube Havola (Link):</label><input type="text" id="yt-link"></div>
+      <button class="btn" onclick="submitTaskLink()">Topshirish</button>
+      <button class="btn btn-dark" onclick="closeModals()">Yopish</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
