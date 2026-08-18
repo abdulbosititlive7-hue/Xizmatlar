@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import CommandStart
 from aiogram.types import (
@@ -9,9 +10,15 @@ from aiogram.types import (
     InlineKeyboardButton
 )
 
-BOT_TOKEN = "8979338262:AAHpP4cmQPc_u6E02ZwpGacE5vXdgNT32tw"
-CHANNEL_USERNAME = "FC_PROUZ"
-WEBSITE_URL = "https://enasiba344-commits.github.io/Fcmobile2026/"
+BOT_TOKEN = os.getenv("FC_BOT_TOKEN")
+if not BOT_TOKEN:
+    raise RuntimeError("FC_BOT_TOKEN environment variable is not set")
+
+CHANNEL_USERNAME = os.getenv("FC_CHANNEL_USERNAME", "FC_PROUZ")
+WEBSITE_URL = os.getenv(
+    "FC_WEBSITE_URL",
+    "https://enasiba344-commits.github.io/Fcmobile2026/"
+)
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()

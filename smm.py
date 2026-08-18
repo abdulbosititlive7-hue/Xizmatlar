@@ -1,4 +1,5 @@
 import asyncio
+import os
 import sqlite3
 import requests
 from aiogram import Bot, Dispatcher, F, types
@@ -9,9 +10,15 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 # SOZLAMALAR
-BOT_TOKEN = "8947484775:AAElxrV4lc52bkUuhxJqEXKMsjpLKrMf_MQ"
-API_URL = "https://seensms.uz/api/v1"
-API_KEY = "wpBWHHJlfE5AGBMK7UKEpQhN76U0qqok"
+BOT_TOKEN = os.getenv("SMM_BOT_TOKEN")
+if not BOT_TOKEN:
+    raise RuntimeError("SMM_BOT_TOKEN environment variable is not set")
+
+API_URL = os.getenv("SMM_API_URL", "https://seensms.uz/api/v1")
+API_KEY = os.getenv("SMM_API_KEY")
+if not API_KEY:
+    raise RuntimeError("SMM_API_KEY environment variable is not set")
+
 SERVICE_PRICE_SUB = 1000 
 STARS_PRICE = 5000000 
 
